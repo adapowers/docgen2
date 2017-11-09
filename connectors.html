@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Tealium docGen 2.0</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+
+  <body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/69d1c15f66.js"></script>
+
+    <!-- docGen stuff -->
+    <link rel="stylesheet" type="text/css" href="solutions.css">
+    <script src="javascripts/docGen.js"></script>
+
+  <div class="container" id="main">
+
+      <div class="box group">
+        <div class="pane-head">
+          <img src="tealium_logo.png" />
+          <h3>Documentation Generator</h3>
+          <div class="tealium-contact clearfix">
+            Quickly generate integration documentation.
+          </div>
+
+          <!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item"><a class="nav-link" href="index.html" role="tab">Tags</a></li>
+  <li class="nav-item"><a class="nav-link active" href="connectors.html" role="tab">Connectors</a></li>
+  <li class="nav-item"><a class="nav-link" href="#" role="tab">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+      <form>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Integration Name</h3>
+            <div class="form-group" id="clientNameList">
+                <label for="formName">What's the integration called?</label>
+                <input type="text" class="form-control" name="formName" id="clientName" required="">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Introduction</h3>
+            <div class="form-group">
+              <label for="clientIntro">Short description of integration:</label>
+              <textarea class="form-control" rows="3" id="clientIntro"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Prerequisites</h3>
+            <div class="form-group" id="clientPrereqList">
+              <label for="clientPrereq1">Add Prerequisites:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="clientPrereq1" placeholder="Prerequisite">
+                <span class="input-group-btn">
+                  <button class="btn client-add-more " type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Supported Versions</h3>
+            <div class="form-group" id="clientVersionList">
+              <label for="clientVersion1">Add Versions:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="clientVersion1" placeholder="Version">
+                <span class="input-group-btn">
+                  <button class="btn client-add-more" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-8">
+            <h3>Tag Configurations</h3>
+            <div class="form-inline" id="clientConfigList">
+              <div class="form-group">
+                <label for="clientConfig1">Config Name</label>
+                <input type="text" class="form-control" id="clientConfig1" placeholder="Config">
+              </div>
+              <div class="form-group">
+                <label for="clientConfigDescription1">Description</label>
+                <input type="text" class="form-control" id="clientConfigDescription1" placeholder="Description">
+                  <button class="btn client-add-more client-add-multi" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Load Rules</h3>
+            <div class="form-group" id="clientLoadList">
+              <label for="clientLoad1">Add a Load Rule:</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="clientLoad1" placeholder="Recommended Load Rule">
+                <span class="input-group-btn">
+                  <button class="btn client-add-more invis-button" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" id="clientDataForm"> <!-- if doesn't work try moving to column -->
+          <div class="col-md-6">
+            <h3>Data Mappings</h3>
+            <div id="clientFullDataForm1">
+              <div>
+                <label for="clientDataCategory1">Category:</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="clientDataCategory1" placeholder="Data Category">
+                  <span class="input-group-btn">
+                    <button class="btn client-add-data-category " type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary client-add-data-field" id="client-add-data-field-1" type="button"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+                  </span>
+                </div>
+              </div>
+                              <!-- this needs some column adjustment on the JS side -->
+              <div class="form-inline" id="clientDataList1">
+                <div class="form-group">
+                  <label for="clientData1">Destination</label>
+                  <input type="text" class="form-control" id="clientData1-1" placeholder="Destination Name">
+                </div>
+                <div class="form-group">
+                  <label for="clientDataDescription1">Description</label>
+                  <input type="text" class="form-control" id="clientDataDescription1-1" placeholder="Description">
+                  <button class="btn invis-button" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Vendor Documentation</h3>
+            <div class="form-inline" id="clientVendorDocList">
+              <div class="form-group ">
+                <label for="clientVendordoc1">Doc Title</label>
+                <input type="text" class="form-control" id="clientVendordoc1" placeholder="Title">
+              </div>
+              <div class="form-group">
+                <label for="clientVendorDocDescription1">Link</label>
+                <input type="text" class="form-control" id="clientVendordocDescription1" placeholder="Link">
+                <button class="btn client-add-more client-add-multi" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button type="button" id="generate" class="btn btn-default client-generate">Generate</button>
+        </div>
+      </form>
+
+    </div>
+  </body>
+</html>
+
+
+<!-- large input
+    <div class="form-group row">
+      <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control form-control-lg" id="lgFormGroupInput" placeholder="you@example.com">
+      </div>
+
+-->
+
+
+<!-- form card login
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="mb-0">Login</h3>
+    </div>
+
+    <div class="card-block">
+        <form class="form" role="form" autocomplete="off" id="formLogin">
+
+            <div class="form-group">
+                <label for="uname1">Username</label>
+                <input type="text" class="form-control" name="uname1" id="uname1" required="">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="pwd1" required="" autocomplete="new-password">
+            </div>
+
+            <div class="form-check small">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"> <span>Remember me on this computer</span>
+                </label>
+            </div>
+
+            <button type="button" class="btn btn-success btn-lg float-right">Login</button>
+        </form>
+    </div>
+        /form card login-->
