@@ -207,6 +207,7 @@ var dataInject = function(section, tokenized, data) {
   }
 }
 
+
 //Sample call: dataInject("intro", clientTemplate.intro, clientDoc.intro)
 var clientTemplate = {
   //End each line with appropriate line breaks
@@ -298,20 +299,39 @@ $(document).ready(function() {
   $(".client-add-data-category").click(function(evt) {
     console.log('Data category');
     evt.preventDefault();
+
     var next, addto, categoryCounter, categoryFieldID, dataFieldID;
-        docGen.client.data.categoryCounter++;
+
+    docGen.client.data.categoryCounter++;
+
+    var context = {
+      next: docGen.client.data.categoryCounter,
+      addto: "#clientDataForm",
+      categoryFieldID: "clientDataCategory" + next,
+      dataFieldID: "clientData" + next + "-1"
+    };
+
+  //  var next, addto, categoryCounter, categoryFieldID, dataFieldID;
+  //      docGen.client.data.categoryCounter++;   //cuz I moved it up above context
         next = docGen.client.data.categoryCounter;
         addto = "#clientDataForm";
         categoryFieldID = "clientDataCategory" + next;
         //clientData(category)(fieldnumber)
         dataFieldID = "clientData" + next + "-1";
+
         // Let global obj know what exists
         docGen.client.data.category[categoryFieldID] = {
           counter: 1,
           elementIDs: [dataFieldID]
         };
 
-      var newIn = '<div id="clientFullDataForm' + next + '"> <div> <label for="clientDataCategory' + next + '">Category:</label> <div class="input-group"> <input type="text" class="form-control" id="clientDataCategory' + next + '" placeholder="Data Category"> <span class="input-group-btn"> <button class="btn btn-danger " id="client-remove-data-category' + next + '" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button> <button class="btn btn-primary client-add-data-field" id="client-add-data-field-'+ next +'" type="button"><i class="fa fa-minus" aria-hidden="true"></i><i class="fa fa-plus-square-o" aria-hidden="true"></i></span> </div> </div> <div class="form-inline pull-right col-lg-12"  id="clientDataList' + next + '"> <div class="form-group "> <label for="clientData' + next + '-1">Destination</label> <input type="text" class="form-control" id="clientData' + next + '-1" placeholder="Destination Name"> </div> <div class="form-group"> <label for="clientDataDescription' + next + '-1">Description</label> <input type="text" class="form-control" id="clientDataDescription' + next + '-1" placeholder="Description"> <button class="btn invis-button" type="button"><i class="fa fa-minus" aria-hidden="true"></i><i class="fa fa-plus" aria-hidden="true"></i> </button> </div> </div> </div>';
+        var catTemplate = Handlebars.compile($("#categoryTemplate").html());
+        var newIn = catTemplate(context);
+      // ^ WILL work, once remove is working
+/*
+      var newIn = '<div class="col-md-6"><div id="clientFullDataForm' + next + '"> <div> <label for="clientDataCategory' + next + '">Category:</label> <div class="input-group"> <input type="text" class="form-control" id="clientDataCategory' + next + '" placeholder="Data Category"> <span class="input-group-btn"> <button class="btn btn-danger " id="client-remove-data-category' + next + '" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button> <button class="btn btn-primary client-add-data-field" id="client-add-data-field-'+ next +'" type="button"><i class="fa fa-minus" aria-hidden="true"></i><i class="fa fa-plus-square-o" aria-hidden="true"></i></span> </div> </div> <div class="form-inline pull-right col-lg-12"  id="clientDataList' + next + '"> <div class="form-group "> <label for="clientData' + next + '-1">Destination</label> <input type="text" class="form-control" id="clientData' + next + '-1" placeholder="Destination Name"> </div> <div class="form-group"> <label for="clientDataDescription' + next + '-1">Description</label> <input type="text" class="form-control" id="clientDataDescription' + next + '-1" placeholder="Description"> <button class="btn invis-button" type="button"><i class="fa fa-minus" aria-hidden="true"></i><i class="fa fa-plus" aria-hidden="true"></i> </button> </div> </div> </div></div>';
+*/
+
       var newInput = $(newIn);
       $(addto).append(newInput);
       //$("#" + formattedTypedSection + next).attr('data-source', $(addto).attr('data-source'));

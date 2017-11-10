@@ -18,6 +18,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
+    <!-- handlebars.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
     <!-- FontAwesome -->
     <script src="https://use.fontawesome.com/69d1c15f66.js"></script>
 
@@ -36,11 +39,11 @@
           </div>
 
           <!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item"><a class="nav-link active" href="index.html" role="tab">Tags</a></li>
-  <li class="nav-item"><a class="nav-link" href="connectors.html" role="tab">Connectors</a></li>
-  <li class="nav-item"><a class="nav-link" href="#" role="tab">Resources</a></li>
-</ul>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item"><a class="nav-link active" href="index.html" role="tab">Tags</a></li>
+            <li class="nav-item"><a class="nav-link" href="connectors.html" role="tab">Connectors</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" role="tab">Resources</a></li>
+          </ul>
 
         </div>
       </div>
@@ -229,3 +232,29 @@
         </form>
     </div>
         /form card login-->
+
+<script id="categoryTemplate" type="x-handlebars-template">
+<div class="col-md-6">
+  <div id="clientFullDataForm{{next}}">
+    <div> <label for="clientDataCategory{{next}}">Category:</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="clientDataCategory{{next}}" placeholder="Data Category">
+        <span class="input-group-btn">
+          <button class="btn btn-danger " id="client-remove-data-category{{next}}" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+          <button class="btn btn-primary client-add-data-field" id="client-add-data-field-{{next}}" type="button"><i class="fa fa-minus" aria-hidden="true"></i><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></button>
+      </div>
+    </div>
+    <div class="form-inline pull-right col-lg-12" id="clientDataList{{next}}">
+      <div class="form-group ">
+        <label for="clientData{{next}}-1">Destination</label>
+        <input type="text" class="form-control" id="clientData{{next}}-1" placeholder="Destination Name">
+      </div>
+      <div class="form-group">
+        <label for="clientDataDescription{{next}}-1">Description</label>
+        <input type="text" class="form-control" id="clientDataDescription{{next}}-1" placeholder="Description">
+        <button class="btn invis-button" type="button"><i class="fa fa-minus" aria-hidden="true"></i><i class="fa fa-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
